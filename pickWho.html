@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+  </head>
+  <body>
+    <h1 id="picker"></h1>
+
+    <script>
+     const today = new Date();
+  const options = { weekday: 'long' };
+  const dayOfWeek = new Intl.DateTimeFormat('en-US', options).format(today);
+  var date = today
+  date.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to zero
+  var yearStart = new Date(date.getFullYear(), 0, 1); // Get the first day of the year
+  var weekNumber = Math.ceil((((date - yearStart) / 86400000) + 1) / 7); // Calculate the week number
+
+  var isEven = ((weekNumber%2) === 0);
+  var isDayEven = ((date.getDay()%2) === 0)
+  var chooseBool  = isEven? isDayEven : !isDayEven;
+  var jayLiam = chooseBool? "Jayson": "Liam";// Log to console
+document.querySelector('#picker').innerHTML = jayLiam
+    </script>
+  </body>
+</html>
